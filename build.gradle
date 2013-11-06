@@ -1,0 +1,72 @@
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'idea'
+
+group = 'me.xyzlast'
+version = '1.0.0-SNAPSHOT'
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+ext {
+    springVersion = '3.2.4.RELEASE'
+    springDataVersion = '1.4.2.RELEASE'
+    hibernateVersion = '4.1.10.Final'
+    slf4jVersion = '1.7.2'
+    bonecpVersion = '0.8.0.RELEASE'
+	ehcacheVersion = '2.7.4'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.slf4j:jcl-over-slf4j:${ext.slf4jVersion}"
+    compile "org.slf4j:jul-to-slf4j:${ext.slf4jVersion}"
+    compile "org.slf4j:slf4j-api:${ext.slf4jVersion}"
+
+    compile 'ch.qos.logback:logback-classic:1.0.13'
+    compile 'com.jolbox:bonecp:${ext.bonecpVersion}'
+    compile 'com.google.guava:guava:14.0'
+
+    compile("org.springframework:spring-core:${ext.springVersion}") {
+        exclude(group: 'commons-logging', module: 'commons-logging')
+    }
+    compile "org.springframework:spring-orm:${ext.springVersion}"
+    compile "org.springframework:spring-tx:${ext.springVersion}"
+    compile "org.springframework:spring-context:${ext.springVersion}"
+    compile "org.springframework:spring-context-support:${ext.springVersion}"
+
+    compile "org.hibernate:hibernate-core:${ext.hibernateVersion}"
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1. Final"
+    compile "org.hibernate:hibernate-entitymanager:4.1.10.Final"
+    compile "org.hibernate:hibernate-validator:4.3.1.Final"
+
+    compile 'org.hibernate:hibernate-ehcache:4.2.7.Final'
+    compile 'net.sf.ehcache:ehcache:${ext.ehcacheVersion}'
+
+    compile("org.springframework.data:spring-data-jpa:${ext.springDataVersion}") {
+        exclude(group: 'org.springframework', module: 'spring-core')
+        exclude(group: 'org.springframework', module: 'spring-beans')
+        exclude(group: 'org.springframework', module: 'spring-orm')
+        exclude(group: 'org.springframework', module: 'spring-context')
+        exclude(group: 'org.springframework', module: 'spring-aop')
+        exclude(group: 'org.springframework', module: 'spring-tx')
+    }
+
+    testCompile "junit:junit:4.11"
+    testCompile "org.springframework:spring-test:${ext.springVersion}"
+    testCompile 'org.mockito:mockito-all:1.9.5'
+}
+
+tasks.withType(Compile) {
+    options.encoding = 'UTF-8'
+}
+
+task initSrc << {
+    project.sourceSets*.allSource.srcDirTrees.flatten().dir.each { dir ->
+        dir.mkdirs()
+    }
+}
