@@ -8,4 +8,6 @@ package me.xyzlast.configs;
  * To change this template use File | Settings | File Templates.
  */
 public enum OrmFramework {
+    Jpa,
+    Hibernate
 }

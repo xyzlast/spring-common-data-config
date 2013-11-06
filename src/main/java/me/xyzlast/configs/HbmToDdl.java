@@ -7,5 +7,8 @@ package me.xyzlast.configs;
  * Time: 1:31 AM
  * To change this template use File | Settings | File Templates.
  */
-public class HbmToDdl {
+public enum HbmToDdl {
+    CREATE_DROP,
+    CREATE,
+    NO_ACTION
 }

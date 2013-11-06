@@ -28,7 +28,7 @@ dependencies {
     compile "org.slf4j:slf4j-api:${ext.slf4jVersion}"
 
     compile 'ch.qos.logback:logback-classic:1.0.13'
-    compile 'com.jolbox:bonecp:${ext.bonecpVersion}'
+    compile "com.jolbox:bonecp:${ext.bonecpVersion}"
     compile 'com.google.guava:guava:14.0'
 
     compile("org.springframework:spring-core:${ext.springVersion}") {
@@ -59,6 +59,8 @@ dependencies {
     testCompile "junit:junit:4.11"
     testCompile "org.springframework:spring-test:${ext.springVersion}"
     testCompile 'org.mockito:mockito-all:1.9.5'
+    testCompile 'mysql:mysql-connector-java:5.1.26'
+
 }
 
 tasks.withType(Compile) {
