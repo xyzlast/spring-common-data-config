@@ -16,7 +16,7 @@ import java.util.Properties;
  * To change this template use File | Settings | File Templates.
  */
 @EnableOrm(enableCache = true, framework = OrmFramework.Jpa, hbmToDdl = HbmToDdl.CREATE,
-        packagesToScan = "me.xyalst.test.entities", showSql = true)
+        packagesToScan = "me.xyzlast.test.entities", showSql = true)
 @Configuration
 @PropertySource(value = {"classpath:dbconnect.properties"})
 @EnableTransactionManagement

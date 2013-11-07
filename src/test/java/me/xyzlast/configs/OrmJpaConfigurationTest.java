@@ -12,7 +12,7 @@ import static org.hamcrest.core.IsNull.*;
 import static org.hamcrest.core.IsNot.*;
 import static org.junit.Assert.*;
 
-import me.xyalst.test.entities.Book;
+import me.xyzlast.test.entities.Book;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
