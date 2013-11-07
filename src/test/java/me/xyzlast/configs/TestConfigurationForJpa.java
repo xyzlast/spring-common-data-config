@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Properties;
 
@@ -18,7 +19,8 @@ import java.util.Properties;
         packagesToScan = "me.xyalst.test.entities", showSql = true)
 @Configuration
 @PropertySource(value = {"classpath:dbconnect.properties"})
-public class TestConfiguration {
+@EnableTransactionManagement
+public class TestConfigurationForJpa {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         PropertySourcesPlaceholderConfigurer configHolder = new PropertySourcesPlaceholderConfigurer();

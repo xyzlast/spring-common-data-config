@@ -24,18 +24,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import static org.mockito.Matchers.*;
-import static org.mockito.Mockito.*;
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-import static org.springframework.test.web.servlet.setup.MockMvcBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
-
 @SuppressWarnings("unused")
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { TestConfiguration.class })
-public class OrmConfigurationSelectorTest {
+@ContextConfiguration(classes = { TestConfigurationForJpa.class })
+public class OrmJpaConfigurationTest {
     @Autowired
     private ApplicationContext context;
 
@@ -43,6 +35,12 @@ public class OrmConfigurationSelectorTest {
     public void getDataSource() {
         DataSource dataSource = context.getBean(DataSource.class);
         assertThat(dataSource, is(not(nullValue())));
+    }
+
+    @Test
+    public void getEntityManagerFactory() {
+        EntityManagerFactory entityManagerFactory = context.getBean(EntityManagerFactory.class);
+        assertThat(entityManagerFactory, is(not(nullValue())));
     }
 
     @Test
