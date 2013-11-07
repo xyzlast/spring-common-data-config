@@ -1,4 +1,4 @@
-package me.xyalst.test.entities;
+package me.xyzlast.test.entities;
 
 import javax.persistence.*;
 
