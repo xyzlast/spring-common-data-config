@@ -5,6 +5,13 @@
 I always copy and paste the bean configurations for SessionFactory, EntityManagerFactory, PlatformTransactionManager and CacheManager. Because It's the first step start to the project using ORM.
 So I decided to change it.
 
+### dependencies
+
+* Spring
+* BoneCP
+* Hibernate
+* EhCache - Hibernate 2nd cache, @EnableCache
+
 ### Usage - JPA, EntityManagerFactory
 
 * add package name that has entities.
