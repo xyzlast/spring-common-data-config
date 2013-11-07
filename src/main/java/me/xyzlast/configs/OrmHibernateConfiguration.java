@@ -31,11 +31,11 @@ public class OrmHibernateConfiguration extends AbstractOrmConfiguration {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         Properties properties = getHibernateProperties();
-        if (showSql) {
+        if (isShowSql()) {
             properties.put(HIBERNATE_SHOW_SQL, "true");
         }
         sessionFactory.setHibernateProperties(properties);
-        sessionFactory.setPackagesToScan(packagesToScan);
+        sessionFactory.setPackagesToScan(getPackagesToScan());
         return sessionFactory;
     }
 }

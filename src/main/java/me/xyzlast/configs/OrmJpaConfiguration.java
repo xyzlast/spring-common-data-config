@@ -35,7 +35,7 @@ public class OrmJpaConfiguration extends AbstractOrmConfiguration {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
-        entityManagerFactory.setPackagesToScan(packagesToScan);
+        entityManagerFactory.setPackagesToScan(getPackagesToScan());
         entityManagerFactory.setDataSource(dataSource());
         entityManagerFactory.setJpaVendorAdapter(hibernateJpaVendorAdapter());
         entityManagerFactory.setJpaProperties(getHibernateProperties());
@@ -45,7 +45,7 @@ public class OrmJpaConfiguration extends AbstractOrmConfiguration {
     @Bean
     public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
         HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-        hibernateJpaVendorAdapter.setShowSql(showSql);
+        hibernateJpaVendorAdapter.setShowSql(isShowSql());
         return hibernateJpaVendorAdapter;
     }
 }

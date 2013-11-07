@@ -21,7 +21,7 @@ import org.springframework.core.io.ClassPathResource;
  * To change this template use File | Settings | File Templates.
  */
 
-public class AbstractEhCacheConfigurer {
+public abstract class AbstractEhCacheConfigurer {
     @Bean(name = "ehcache")
     public EhCacheManagerFactoryBean ehCacheManagerFactoryBean() throws Exception {
         EhCacheManagerFactoryBean bean = new EhCacheManagerFactoryBean();

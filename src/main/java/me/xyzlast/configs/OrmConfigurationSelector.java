@@ -20,9 +20,9 @@ public class OrmConfigurationSelector implements ImportSelector {
                 .getAnnotationAttributes(EnableOrm.class.getName());
         final OrmFramework framework = (OrmFramework) annotationAttributes.get("framework");
 
-        if(OrmFramework.Jpa == framework) {
+        if(OrmFramework.JPA == framework) {
             return new String[] { OrmJpaConfiguration.class.getName() };
-        } else if(OrmFramework.Hibernate == framework) {
+        } else if(OrmFramework.HIBERNATE == framework) {
             return new String[] { OrmHibernateConfiguration.class.getName() };
         } else {
             throw new IllegalArgumentException("framework type is not supported");

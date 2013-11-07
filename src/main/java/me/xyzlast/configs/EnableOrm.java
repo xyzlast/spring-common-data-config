@@ -21,6 +21,6 @@ public @interface EnableOrm {
     String[] packagesToScan() default "";
     boolean enableCache() default false;
     boolean showSql() default false;
-    OrmFramework framework() default OrmFramework.Jpa;
+    OrmFramework framework() default OrmFramework.JPA;
     HbmToDdl hbmToDdl() default HbmToDdl.NO_ACTION;
 }

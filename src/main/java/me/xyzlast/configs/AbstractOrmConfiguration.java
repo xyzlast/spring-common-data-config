@@ -9,7 +9,6 @@ import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.orm.hibernate4.HibernateExceptionTranslator;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import java.util.Date;
 import java.util.Map;
 import java.util.Properties;
 
@@ -42,10 +41,18 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
 
     private static final String HIBERNATE_CACHE_NAME = "me.xyzlast.configs.enableORM.cacheManager";
 
-    protected boolean showSql;
+    private boolean showSql;
     private boolean enableCache;
-    protected String[] packagesToScan;
+    private String[] packagesToScan;
     private HbmToDdl hbmToDdl;
+
+    public boolean isShowSql() {
+        return showSql;
+    }
+
+    public String[] getPackagesToScan() {
+        return packagesToScan.clone();
+    }
 
     @Autowired
     private Environment env;

@@ -16,7 +16,7 @@ import java.util.Properties;
  * Time: 2:12 AM
  * To change this template use File | Settings | File Templates.
  */
-@EnableOrm(enableCache = true, framework = OrmFramework.Jpa, hbmToDdl = HbmToDdl.CREATE,
+@EnableOrm(enableCache = true, framework = OrmFramework.JPA, hbmToDdl = HbmToDdl.CREATE,
         packagesToScan = "me.xyzlast.test.entities", showSql = true)
 @Configuration
 @PropertySource(value = {"classpath:dbconnect.properties"})
