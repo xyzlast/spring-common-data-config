@@ -17,7 +17,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * To change this template use File | Settings | File Templates.
  */
 @Configuration
-@EnableTransactionManagement
 public class OrmJpaConfiguration extends AbstractOrmConfiguration {
 
     @Bean

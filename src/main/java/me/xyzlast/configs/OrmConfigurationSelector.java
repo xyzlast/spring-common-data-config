@@ -15,13 +15,17 @@ import java.util.Map;
 public class OrmConfigurationSelector implements ImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
+
         final Map<String,Object> annotationAttributes = importingClassMetadata
                 .getAnnotationAttributes(EnableOrm.class.getName());
-        OrmFramework framework = (OrmFramework) annotationAttributes.get("framework");
+        final OrmFramework framework = (OrmFramework) annotationAttributes.get("framework");
+
         if(OrmFramework.Jpa == framework) {
             return new String[] { OrmJpaConfiguration.class.getName() };
-        } else {
+        } else if(OrmFramework.Hibernate == framework) {
             return new String[] { OrmHibernateConfiguration.class.getName() };
+        } else {
+            throw new IllegalArgumentException("framework type is not supported");
         }
     }
 }

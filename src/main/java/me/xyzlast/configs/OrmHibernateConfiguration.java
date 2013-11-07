@@ -17,7 +17,6 @@ import java.util.Properties;
  * To change this template use File | Settings | File Templates.
  */
 @Configuration
-@EnableTransactionManagement
 public class OrmHibernateConfiguration extends AbstractOrmConfiguration {
     @Override
     @Bean

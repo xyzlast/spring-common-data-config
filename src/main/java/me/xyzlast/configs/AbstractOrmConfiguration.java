@@ -27,6 +27,8 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
     public static final String CONNECT_PASSWORD = "connect.password";
     public static final String CONNECT_DRIVER = "connect.driver";
     public static final String CONNECT_URL = "connect.url";
+    public static final String CONNECT_MAX = "connect.max";
+    public static final String CONNECT_MIN = "connect.min";
 
     public static final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
     public static final String EH_CACHE_REGION_FACTORY = "org.hibernate.cache.ehcache.EhCacheRegionFactory";
@@ -36,10 +38,7 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
     public static final String HIBERNATE_HBM2DDL_AUTO = "hibernate.hbm2ddl.auto";
     public static final String CREATE_DROP = "create-drop";
     public static final String CREATE = "create";
-
-    // public static final int MAX_CONNECTION = 20;
-    public static final int MAX_CONNECTION = 200;
-    public static final int MIN_CONNECTION = 3;
+    private static final String HIBERNATE_EHCACHE_MANAGER_NAME = "net.sf.ehcache.cacheManagerName";
 
     protected boolean showSql;
     private boolean enableCache;
@@ -58,6 +57,7 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
         packagesToScan = (String[]) annotationAttributes.get("packagesToScan");
         showSql = (boolean) annotationAttributes.get("showSql");
         hbmToDdl = (HbmToDdl) annotationAttributes.get("hbmToDdl");
+
     }
 
     @Bean
@@ -67,8 +67,11 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
         dataSource.setPassword(env.getProperty(CONNECT_PASSWORD));
         dataSource.setDriverClass(env.getProperty(CONNECT_DRIVER));
         dataSource.setJdbcUrl(env.getProperty(CONNECT_URL));
-        dataSource.setMaxConnectionsPerPartition(MAX_CONNECTION);
-        dataSource.setMinConnectionsPerPartition(MIN_CONNECTION);
+
+        int minConnection = Integer.parseInt(env.getProperty(CONNECT_MIN));
+        int maxConnection = Integer.parseInt(env.getProperty(CONNECT_MAX));
+        dataSource.setMaxConnectionsPerPartition(minConnection);
+        dataSource.setMinConnectionsPerPartition(maxConnection);
         return dataSource;
     }
 
@@ -87,7 +90,7 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
             properties.put(HIBERNATE_CACHE_REGION_FACTORY_CLASS, EH_CACHE_REGION_FACTORY);
             properties.put(HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE, true);
             properties.put(HIBERNATE_CACHE_USE_QUERY_CACHE, true);
-            properties.put("net.sf.ehcache.cacheManagerName", Long.valueOf((new Date()).getTime()).toString());
+            properties.put(HIBERNATE_EHCACHE_MANAGER_NAME, Long.valueOf((new Date()).getTime()).toString());
         }
 
         switch (hbmToDdl) {

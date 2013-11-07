@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -41,6 +42,12 @@ public class OrmJpaConfigurationTest {
     public void getEntityManagerFactory() {
         EntityManagerFactory entityManagerFactory = context.getBean(EntityManagerFactory.class);
         assertThat(entityManagerFactory, is(not(nullValue())));
+    }
+
+    @Test
+    public void getTransactionManager() {
+        PlatformTransactionManager transactionManager = context.getBean(PlatformTransactionManager.class);
+        assertThat(transactionManager, is(not(nullValue())));
     }
 
     @Test
