@@ -19,6 +19,11 @@ So I decided to change it.
 * add @EnableOrm annotation to your domain java configuration.
 * if you want to @EnableCaching spring annotation, please extends your configuration class from AbstractEhCacheConfigurer
 
+### Test
+
+* must be installed mysql and create bookstore database
+* must be setted connect.username, connect.password in dbconnect.properties
+
 
 ```properties
 connect.driver=com.mysql.jdbc.Driver
