@@ -1,5 +1,6 @@
 package me.xyzlast.configs;
 
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
@@ -20,7 +21,8 @@ import java.util.Properties;
 @Configuration
 @PropertySource(value = {"classpath:dbconnect.properties"})
 @EnableTransactionManagement
-public class TestConfigurationForJpa {
+@EnableCaching
+public class TestConfigurationForJpa extends AbstractEhCacheConfigurer {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         PropertySourcesPlaceholderConfigurer configHolder = new PropertySourcesPlaceholderConfigurer();

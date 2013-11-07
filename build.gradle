@@ -2,6 +2,7 @@ apply plugin: 'java'
 apply plugin: 'maven'
 apply plugin: 'eclipse-wtp'
 apply plugin: 'idea'
+apply plugin: 'jacoco'
 
 group = 'me.xyzlast'
 version = '1.0.0-SNAPSHOT'
@@ -70,5 +71,21 @@ tasks.withType(Compile) {
 task initSrc << {
     project.sourceSets*.allSource.srcDirTrees.flatten().dir.each { dir ->
         dir.mkdirs()
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/jacocoHtml"
+    }
+}
+
+test {
+    jacoco {
+        append = false
+        destinationFile = file("target/jacoco.exec")
+        classDumpFile = file("target/classpathdumps")
     }
 }

@@ -40,6 +40,8 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
     public static final String CREATE = "create";
     private static final String HIBERNATE_EHCACHE_MANAGER_NAME = "net.sf.ehcache.cacheManagerName";
 
+    private static final String HIBERNATE_CACHE_NAME = "me.xyzlast.configs.enableORM.cacheManager";
+
     protected boolean showSql;
     private boolean enableCache;
     protected String[] packagesToScan;
@@ -57,7 +59,6 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
         packagesToScan = (String[]) annotationAttributes.get("packagesToScan");
         showSql = (boolean) annotationAttributes.get("showSql");
         hbmToDdl = (HbmToDdl) annotationAttributes.get("hbmToDdl");
-
     }
 
     @Bean
@@ -84,15 +85,14 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
     public abstract PlatformTransactionManager transactionManager();
 
     protected Properties getHibernateProperties() {
-        Properties properties = new Properties();
+        final Properties properties = new Properties();
         properties.put(HIBERNATE_DIALECT, env.getProperty(HIBERNATE_DIALECT));
         if (enableCache) {
             properties.put(HIBERNATE_CACHE_REGION_FACTORY_CLASS, EH_CACHE_REGION_FACTORY);
             properties.put(HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE, true);
             properties.put(HIBERNATE_CACHE_USE_QUERY_CACHE, true);
-            properties.put(HIBERNATE_EHCACHE_MANAGER_NAME, Long.valueOf((new Date()).getTime()).toString());
+            properties.put(HIBERNATE_EHCACHE_MANAGER_NAME, HIBERNATE_CACHE_NAME);
         }
-
         switch (hbmToDdl) {
             case CREATE:
                 properties.put(HIBERNATE_HBM2DDL_AUTO, CREATE);
