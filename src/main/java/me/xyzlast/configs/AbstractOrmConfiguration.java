@@ -39,8 +39,6 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
     public static final String CREATE = "create";
     private static final String HIBERNATE_EHCACHE_MANAGER_NAME = "net.sf.ehcache.cacheManagerName";
 
-    private static final String HIBERNATE_CACHE_NAME = "me.xyzlast.configs.enableORM.cacheManager";
-
     private boolean showSql;
     private boolean enableCache;
     private String[] packagesToScan;
@@ -98,7 +96,7 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
             properties.put(HIBERNATE_CACHE_REGION_FACTORY_CLASS, EH_CACHE_REGION_FACTORY);
             properties.put(HIBERNATE_CACHE_USE_SECOND_LEVEL_CACHE, true);
             properties.put(HIBERNATE_CACHE_USE_QUERY_CACHE, true);
-            properties.put(HIBERNATE_EHCACHE_MANAGER_NAME, HIBERNATE_CACHE_NAME);
+            properties.put(HIBERNATE_EHCACHE_MANAGER_NAME, Constants.SHARED_CACHE_NAME);
         }
         switch (hbmToDdl) {
             case CREATE:

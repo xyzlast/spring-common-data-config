@@ -6,7 +6,7 @@ apply plugin: 'jacoco'
 apply plugin: 'sonar-runner'
 
 group = 'me.xyzlast'
-version = '0.9.0'
+version = '0.9.1'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -57,12 +57,10 @@ dependencies {
         exclude(group: 'org.springframework', module: 'spring-aop')
         exclude(group: 'org.springframework', module: 'spring-tx')
     }
-
     testCompile "junit:junit:4.11"
     testCompile "org.springframework:spring-test:${ext.springVersion}"
     testCompile 'org.mockito:mockito-all:1.9.5'
     testCompile 'mysql:mysql-connector-java:5.1.26'
-
 }
 
 tasks.withType(Compile) {
@@ -102,10 +100,8 @@ uploadArchives {
     repositories {
         add project.repositories.fileRepo
         mavenDeployer {
-            repository {
-                url = "http://192.168.13.209:8080/nexus"
-                username = 'admin'
-                password = 'qwer12#$'
+            repository(url: "http://192.168.13.209:8080/nexus/content/repositories/releases/") {
+                authentication(userName: 'admin', password: 'qwer12#$')    
             }
         }
     }

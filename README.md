@@ -17,7 +17,8 @@ So I decided to change it.
 * add package name that has entities.
 * add properties file included username, password, dialect, driverName, minConnection and maxConnection.
 * add @EnableOrm annotation to your domain java configuration.
-* if you want to @EnableCaching spring annotation, please extends your configuration class from AbstractEhCacheConfigurer
+* if you want to @EnableCaching spring annotation, please import EhCacheConfigurer
+** this class use shared cache manager for Hibernate 2nd cache & Spring @EnableCache.
 
 ### Test
 
@@ -46,7 +47,8 @@ hibernate.dialect=org.hibernate.dialect.MySQL5InnoDBDialect
 @PropertySource(value = {"classpath:dbconnect.properties"})
 @EnableTransactionManagement
 @EnableCaching
-public class TestConfigurationForJpa extends AbstractEhCacheConfigurer {
+@Import(EhCacheConfigurer.class)
+public class TestConfigurationForJpa {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         PropertySourcesPlaceholderConfigurer configHolder = new PropertySourcesPlaceholderConfigurer();

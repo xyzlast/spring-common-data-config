@@ -3,6 +3,7 @@ package me.xyzlast.configs;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -22,7 +23,8 @@ import java.util.Properties;
 @PropertySource(value = {"classpath:dbconnect.properties"})
 @EnableTransactionManagement
 @EnableCaching
-public class TestConfigurationForJpa extends AbstractEhCacheConfigurer {
+@Import(AbstractEhCacheConfigurer.class)
+public class TestConfigurationForJpa {
     @Bean
     public static PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer() {
         PropertySourcesPlaceholderConfigurer configHolder = new PropertySourcesPlaceholderConfigurer();
