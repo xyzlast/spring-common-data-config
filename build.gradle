@@ -6,7 +6,7 @@ apply plugin: 'jacoco'
 apply plugin: 'sonar-runner'
 
 group = 'me.xyzlast'
-version = '1.0.0-SNAPSHOT'
+version = '0.9.0'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -42,8 +42,8 @@ dependencies {
     compile "org.springframework:spring-context-support:${ext.springVersion}"
 
     compile "org.hibernate:hibernate-core:${ext.hibernateVersion}"
-    compile "org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1. Final"
-    compile "org.hibernate:hibernate-entitymanager:4.1.10.Final"
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.0-api:1.0.1.Final"
+    compile "org.hibernate:hibernate-entitymanager:${ext.hibernateVersion}"
     compile "org.hibernate:hibernate-validator:4.3.1.Final"
 
     compile 'org.hibernate:hibernate-ehcache:4.2.7.Final'
@@ -101,12 +101,12 @@ repositories {
 uploadArchives {
     repositories {
         add project.repositories.fileRepo
-        ivy {
-            credentials {
-                username "admin"
-                password 'qwer12#$'
+        mavenDeployer {
+            repository {
+                url = "http://192.168.13.209:8080/nexus"
+                username = 'admin'
+                password = 'qwer12#$'
             }
-            url "http://192.168.13.209:8080/nexus/content/repositories/thirdparty/"
         }
     }
 }
