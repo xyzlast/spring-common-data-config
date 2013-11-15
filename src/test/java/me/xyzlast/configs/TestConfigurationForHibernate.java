@@ -17,7 +17,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableOrm(showSql = true, packagesToScan = "me.xyzlast.test.entities",
-        hbmToDdl = HbmToDdl.CREATE_DROP, framework = OrmFramework.HIBERNATE, enableCache = false)
+        hbmToDdl = HbmToDdl.CREATE_DROP, framework = OrmFramework.HIBERNATE, enableCache = true)
 @PropertySource(value = {"classpath:dbconnect.properties"})
 @EnableTransactionManagement
 public class TestConfigurationForHibernate {
