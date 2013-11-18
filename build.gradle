@@ -30,8 +30,10 @@ dependencies {
     compile "org.slf4j:slf4j-api:${ext.slf4jVersion}"
 
     compile 'ch.qos.logback:logback-classic:1.0.13'
-    compile "com.jolbox:bonecp:${ext.bonecpVersion}"
-    compile 'com.google.guava:guava:14.0'
+    compile("com.jolbox:bonecp:${ext.bonecpVersion}") {
+        exclude(group: 'com.google.guava', module: 'guava')
+    }
+    compile 'com.google.guava:guava:15.0'
 
     compile("org.springframework:spring-core:${ext.springVersion}") {
         exclude(group: 'commons-logging', module: 'commons-logging')
