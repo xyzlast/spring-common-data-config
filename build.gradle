@@ -6,7 +6,7 @@ apply plugin: 'jacoco'
 apply plugin: 'sonar-runner'
 
 group = 'me.xyzlast'
-version = '0.9.1'
+version = '0.9.2'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7

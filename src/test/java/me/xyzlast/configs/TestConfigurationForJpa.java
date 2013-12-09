@@ -22,7 +22,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource(value = {"classpath:dbconnect.properties"})
 @EnableTransactionManagement
-@EnableCaching
+@EnableCaching()
 @Import(EhCacheConfigurer.class)
 public class TestConfigurationForJpa {
     @Bean

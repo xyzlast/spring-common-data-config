@@ -75,9 +75,9 @@ public abstract class AbstractOrmConfiguration implements ImportAware {
         dataSource.setJdbcUrl(env.getProperty(CONNECT_URL));
 
         int minConnection = Integer.parseInt(env.getProperty(CONNECT_MIN));
+        dataSource.setMinConnectionsPerPartition(minConnection);
         int maxConnection = Integer.parseInt(env.getProperty(CONNECT_MAX));
-        dataSource.setMaxConnectionsPerPartition(minConnection);
-        dataSource.setMinConnectionsPerPartition(maxConnection);
+        dataSource.setMaxConnectionsPerPartition(maxConnection);
         return dataSource;
     }
 
