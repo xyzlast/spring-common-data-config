@@ -11,6 +11,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 
 import java.util.Map;
 import java.util.Properties;
+import java.util.UUID;
 
 /**
  * Created with IntelliJ IDEA.
